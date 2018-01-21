@@ -1,0 +1,246 @@
+/* code for Compare excel done by Palash*/
+/*This Code will work for .xlsx format files or excel above 2007 */
+
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+	import java.net.URL;
+	import java.net.URLConnection;
+	import java.util.regex.Matcher;
+	import java.util.regex.Pattern;
+	import java.io.FileOutputStream;
+	import java.io.IOException;
+	 
+	import org.apache.poi.ss.usermodel.Cell;
+	import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellReference;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+	import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+	public class ReportToExcel {
+		private static XSSFWorkbook workbook;
+        private static String inputFile = null;//C:\\Users\\C5257213\\Desktop\\HealthCheck_AOLAP_42_SP1_1880.xlsx
+        private static String summarFile = null;
+		public static void xl(double data , int rowcount, int colcount) throws IOException
+		{	FileInputStream out= new FileInputStream(inputFile);//to read excel sheet that need to updated 
+			workbook = new XSSFWorkbook(out);//access the workbook
+	        int s = workbook.getActiveSheetIndex();//get active sheet index
+	        XSSFSheet sheet = workbook.getSheetAt(s);//access worksheet
+	        Row row = sheet.getRow(rowcount);//go to row
+            Cell cell = row.getCell(colcount);//go to column
+            cell.setCellValue(data);// data in format
+			out.close();//close inputstream
+			FileOutputStream ou=new FileOutputStream(inputFile);//open to write uodates 
+            System.out.println("Found at " + (new CellReference(cell)).formatAsString() + ":");
+
+			workbook.write(ou);//write changes 
+			ou.close();//close outputstreem
+			
+			
+
+
+		}public static void nintyperncentile()
+		{
+			try { 
+				URL google = new URL("file:///"+summarFile); 
+				URLConnection yc = google.openConnection(); 
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc 
+				.getInputStream())); 
+				String inputLine; 
+				String str;
+				double d;
+	            
+		        int rowCount =10;
+		        int colCount=6;
+		        Pattern regex = Pattern.compile("[Lra]([90])\\w+");
+
+					while ((inputLine = in.readLine()) != null) { 
+					    Matcher regexMatcher = regex.matcher(inputLine);
+												    while (regexMatcher.find()) {
+											    	
+											    	Pattern regex1 = Pattern.compile("[#]([669])\\w+");
+											    	 Matcher matcher = regex1.matcher(inputLine);
+											    	 while(matcher.find()){
+				    		 
+				    		 
+														    		 Pattern regex3 = Pattern.compile("[0-9]+(\\.[0-9]?[0-9]?[0-9]?[0-9])");
+															    	 Matcher matcher3 = regex3.matcher(inputLine);
+															    	 while(matcher3.find()){
+																			    		str=matcher3.group();
+																			    		 d = Double.parseDouble(str);
+																			    //		 out.println(str);
+																			    		// bookData[p++]=str;
+																			    		xl(d,++rowCount,colCount);
+
+
+																		                    	System.out.println(str); 
+					    	 }
+				    	 						}
+				    	 						}	
+				    
+				    							}
+
+				} catch (Exception e) { 
+				e.printStackTrace(); 
+				} 
+				} 
+		public static void min()
+		{
+			try { 
+				URL google = new URL("file:///"+summarFile); 
+				URLConnection yc = google.openConnection(); 
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc 
+				.getInputStream())); 
+				String inputLine; 
+				String str;
+				double d;
+	            
+		        int rowCount =10;
+		        int colCount=8;
+		        Pattern regex = Pattern.compile("(?<![\\w\\d])LraMinimum&nbsp(?![\\w\\d])");
+
+					while ((inputLine = in.readLine()) != null) { 
+					    Matcher regexMatcher = regex.matcher(inputLine);
+												    while (regexMatcher.find()) {
+											    	
+											    	Pattern regex1 = Pattern.compile("[#]([669])\\w+");
+											    	 Matcher matcher = regex1.matcher(inputLine);
+											    	 while(matcher.find()){
+				    		 
+				    		 
+														    		 Pattern regex3 = Pattern.compile("[0-9]+(\\.[0-9]?[0-9]?[0-9]?[0-9])");
+															    	 Matcher matcher3 = regex3.matcher(inputLine);
+															    	 while(matcher3.find()){
+																			    		str=matcher3.group();
+																			    		 d = Double.parseDouble(str);
+																			    //		 out.println(str);
+																			    		// bookData[p++]=str;
+																			    		xl(d,++rowCount,colCount);
+
+
+																		                    	System.out.println(str); 
+					    	 }
+				    	 						}
+				    	 						}	
+				    
+				    							}
+
+				} catch (Exception e) { 
+				e.printStackTrace(); 
+				} 
+				} 
+
+		
+		public static void max()
+		{
+			try { 
+				URL google = new URL("file:///"+summarFile); 
+				URLConnection yc = google.openConnection(); 
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc 
+				.getInputStream())); 
+				String inputLine; 
+				String str;
+				double d;
+	            
+		        int rowCount =10;
+		        int colCount=9;
+		        Pattern regex = Pattern.compile("LraMaximum&nbsp(?![\\w\\d])");
+
+					while ((inputLine = in.readLine()) != null) { 
+					    Matcher regexMatcher = regex.matcher(inputLine);
+												    while (regexMatcher.find()) {
+											    	
+											    	Pattern regex1 = Pattern.compile("[#]([669])\\w+");
+											    	 Matcher matcher = regex1.matcher(inputLine);
+											    	 while(matcher.find()){
+				    		 
+				    		 
+														    		 Pattern regex3 = Pattern.compile("[0-9]+(\\.[0-9]?[0-9]?[0-9]?[0-9])");
+															    	 Matcher matcher3 = regex3.matcher(inputLine);
+															    	 while(matcher3.find()){
+																			    		str=matcher3.group();
+																			    		 d = Double.parseDouble(str);
+																			    //		 out.println(str);
+																			    		// bookData[p++]=str;
+																			    		xl(d,++rowCount,colCount);
+
+
+																		                    	System.out.println(str); 
+					    	 }
+				    	 						}
+				    	 						}	
+				    
+				    							}
+
+				} catch (Exception e) { 
+				e.printStackTrace(); 
+				} 
+				} 
+
+		public static void sd()
+		{
+			try { 
+				URL google = new URL("file:///"+summarFile); 
+				URLConnection yc = google.openConnection(); 
+				BufferedReader in = new BufferedReader(new InputStreamReader(yc 
+				.getInputStream())); 
+				String inputLine; 
+				String str;
+				double d;
+	            
+		        int rowCount =10;
+		        int colCount=7;
+		        Pattern regex = Pattern.compile("LraStd. Deviation&nbsp;(?![\\w\\d])");
+
+					while ((inputLine = in.readLine()) != null) { 
+					    Matcher regexMatcher = regex.matcher(inputLine);
+												    while (regexMatcher.find()) {
+											    	
+											    	Pattern regex1 = Pattern.compile("[#]([669])\\w+");
+											    	 Matcher matcher = regex1.matcher(inputLine);
+											    	 while(matcher.find()){
+				    		 
+				    		 
+														    		 Pattern regex3 = Pattern.compile("[0-9]+(\\.[0-9]?[0-9]?[0-9]?[0-9])");
+															    	 Matcher matcher3 = regex3.matcher(inputLine);
+															    	 while(matcher3.find()){
+																			    		str=matcher3.group();
+																			    		 d = Double.parseDouble(str);
+																			    //		 out.println(str);
+																			    		// bookData[p++]=str;
+																			    		xl(d,++rowCount,colCount);
+
+
+																		                    	System.out.println(str); 
+					    	 }
+				    	 						}
+				    	 						}	
+				    
+				    							}
+
+				} catch (Exception e) { 
+				e.printStackTrace(); 
+				} 
+				} 
+
+		
+		public static void main(String[] args) { 
+			
+			if(args.length >= 1)
+			{
+		    inputFile = args[0];
+			summarFile = args[1];
+			System.out.println(args[0]);
+			System.out.println(args[1]);
+			nintyperncentile();
+			min();
+			max();
+			sd();
+			}
+			else
+				System.out.println("Please pass the correct parameter java -jar xyz inputoutputfilelocation summaryfilelocation ");
+			}
+	}
+
